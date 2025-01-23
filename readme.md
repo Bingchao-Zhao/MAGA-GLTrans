@@ -21,10 +21,10 @@ MAGA-GLTrans is trained and predicts at magnifications of 20X, 10X, and 5X. If W
 * `SAVE_DIR`: Reconfigure the save folder of the WSI.
 * `SUFFIX`: The suffix of the original WSI file. such as‌ '.svs', '.tif', '.mrxs'.
 
-### Tissue Segmentation 
+## Tissue Segmentation 
 The tissue segmentation process follows the [CLAM](https://github.com/mahmoodlab/CLAM).
 
-### Feature Extraction
+## Feature Extraction
 For ResNet50 feature extraction we used the same process as for [CLAM](https://github.com/mahmoodlab/CLAM).
 For feature extraction of the UNI model, we refer to the official code of  [UNI](https://github.com/mahmoodlab/UNI).
 For feature extraction of the CTransPath model, we refer to the official process of [CTransPath](https://github.com/Xiyue-Wang/TransPath).
@@ -32,28 +32,28 @@ It is worth noting that the corresponding WSI tile resolutions for this paper at
 
 The features are saved as a dictionary in a `.npy` file. The specific format is: `data = {'feature':[f1,... ,fn], 'index':[[],... ,[]]}`.
 
-### Magnification-Aligned
+## Magnification-Aligned
 In the magnification alignment task, the input low-magnification image must maintain the same field of view as the high-magnification image. For example, in the 5X and 20X alignment tasks, if the image resolution of 20X is 256×256, the image resolution of 5X should be 64×64.
 
-#### 1. Patching
+### 1. Patching
 We first use the `WSI_to_patches.py` script to split the WSI into Patches and record the file path of each Patch for subsequent data loading. Users can specify the WSI they want to slice by modifying the WSI storage path in the `config/align_conf.yaml` configuration script. In the `WSI_to_patches.py` script:
 * `-ps`: Patch size.
 * `-slide_ext`: The suffix of the WSI file. For example: `.svs`, `.tif`.
 * `-X20_level`: Level of 20X image of the WSI file. Normally 0 or 1.
 
-#### 2. Train Magnification Aligned Model
+### 2. Train Magnification Aligned Model
 After patching of WSIs, we train the alignment model by the `mag_align_train.py` script. The alignment model needs to be loaded with pre-training weights for the high-magnification feature extractor. Pre-training weights for ResNet50 are available in [CLAM](https://github.com/mahmoodlab/CLAM). The weights are placed in the `weight` directory. In the code, we use the `ResNet50` model by default. We explain some important parameters. 
 * `-dataset`: Dataset name.
 * `-resolution`: The multiplicity of alignment is required. 
 * `PATH_RECORD`: The `CSV` file that records the path to the wsi patches. 
 * `SAVE_DIR`: The root of the WSI patches.
 
-#### 3. Inference of Aligned Model.
+### 3. Inference of Aligned Model.
 * `-infer_wsi_dir`: WSI folder that requires inference.
 * `-infer_wsi_index_dir`: Tissue index `CSV` file for the WSI. Requires the same file name as WSI. It can be obtained by `Tissue Segmentation` step.
 * `-infer_weight`: The weight of align model.
 
-### MAGA-GLTrans Training
+## MAGA-GLTrans Training
 **Before training or testing, the `data_path` parameter in the 'config/model_base_conf.yaml' script needs to be modified to specify the path of the features.**
 The MAGA-Trans model is trained like the regular MIL model. Training with aligned features only requires replacing the original feature folder with the folder of aligned features. The MAGA-GLTrans model is trained with the `train.py` script.
 * `-stage`: 'train' or 'infer'.
@@ -61,5 +61,5 @@ The MAGA-Trans model is trained like the regular MIL model. Training with aligne
 * `-dataset`: Dataset of the training feature.
 * `-fold`: Fold of the ten-fold.
 
-### MAGA_GLTrans Testing
+## MAGA_GLTrans Testing
 The user only needs to modify the `-stage` parameter in the `train.py` script to `'infer'`.
