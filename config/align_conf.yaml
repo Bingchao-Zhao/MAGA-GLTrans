@@ -1,0 +1,25 @@
+#  Root directory where cut jpg files are saved
+SAVE_DIR : "Patch_save_path"
+# svs file of dataset
+DATA_DIR: 
+  TCGA_lung : '/media/zbc/18T_dtp/南方医院/datasets_glioma/dtp_glioma(20倍)/北大深圳/data'
+  TCGA_glioma : ''
+  CAMELYON: ''
+# The directory where the csv file for the WSI's patch coordinates. 
+# The csv files have the same name of the wsi.
+INDEX_DIR : 
+  TCGA_lung : '/media/zbc/18T_dtp/南方医院/datasets_glioma/dtp_glioma(20倍)/北大深圳/224/index'
+  TCGA_glioma : ''
+  CAMELYON: ''
+# Records the relative path of the cut jpg file in the root directory where it is saved.
+# Facilitates subsequent reading of the aligned model.
+PATH_RECORD : "record/path_record"
+
+# To prevent too many jpg files in the directory, which makes it difficult to delete. 
+# Limit the number of subfiles in each directory.
+MAX_FILE_OF_DIR : 300
+
+RESOLU_SIZE : 
+  '20Xto2.5X': 32
+  '20Xto5X': 64
+  '20Xto10X': 128

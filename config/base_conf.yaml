@@ -1,0 +1,52 @@
+WSI_DIR: 
+  camelyon16: /media/zbc/ZBC14T/dataset/CAMELYON16
+  tcga_glioma: /media/zbc/M008/COMMA/Glioma/data/muti_resolu
+  tcga_lung: /media/zbc/M008/COMMA/Lung/data/muti_resolu
+MASK_DIR:
+  camelyon16: /media/zbc/M008/COMMA/CAMELYON16/data/mask/mask_deep2
+  tcga_glioma: /media/zbc/M008/COMMA/Glioma/data/mask_clam
+  tcga_lung: /media/zbc/M008/COMMA/Lung/data/mask_trad
+INDEX_DIR:
+  camelyon16: /media/zbc/M008/COMMA/CAMELYON16/data/patch_index_deep2
+  tcga_glioma: /media/zbc/M008/COMMA/Glioma/data/patch_index/clam
+  tcga_lung: /media/zbc/M008/COMMA/Lung/data/patch_index_trad
+FEATURE_DIR:
+  camelyon16: /media/zbc/M008/COMMA/CAMELYON16/data/feature/deep_nor
+  tcga_glioma: /media/zbc/M008/COMMA/Glioma/data/feature/coma
+  tcga_lung: /media/zbc/M008/COMMA/Lung/data/feature/trad
+FOLD_DIR:
+  camelyon16: nfold/camelyon16
+  tcga_glioma: nfold/glioma
+  tcga_lung: nfold/tcga_lung
+PATCH_NPY_DIR:
+  camelyon16: nfold/camelyon16
+  tcga_glioma: nfold/glioma
+  tcga_lung: /media/zbc/hanchu001/TCGA-LUNG/data/patch/20X_patch_npy
+
+PATCH_NPY_WSI_CACHE_NUM: 200
+WSI_CONF:
+  LEVEL_SIZE:
+    20X: 256 
+    10X: 128 
+    5X: 64 
+  LEVEL_DWON:
+    20X: 0 
+    10X: 1 
+    5X: 2 
+  LEVEL_INDEX:
+    camelyon16:
+      20X: 1 
+      10X: 2 
+      5X: 3 
+    tcga_glioma:
+      20X: 0 
+      10X: 1 
+      5X: 2 
+    tcga_lung:
+      20X: 0 
+      10X: 1 
+      5X: 2 
+  WSI_SUFFIX:
+    camelyon16: .tif
+    tcga_glioma: .svs
+    tcga_lung: .svs

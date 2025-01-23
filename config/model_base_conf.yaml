@@ -1,0 +1,81 @@
+General:
+    comment: 
+    seed: 2023
+    fp16: True
+    amp_level: O2
+    precision: 32 
+    multi_gpu_mode: dp
+    gpus: [0]
+    epochs: &epoch 200 
+    grad_acc: 2
+    frozen_bn: False
+    patience: 40
+    server: test #train #test
+    log_path: logs/
+
+Data:
+    # dataset_name: camel_data
+    data_shuffle: False
+
+    train_dataloader:
+        batch_size: 1 
+        num_workers: 0
+
+    test_dataloader:
+        batch_size: 1
+        num_workers: 1
+
+Model:
+  name: COMA
+  n_classes: 2
+  in_feat: 1024 # Resnet50: 1024, Ctranspath: 768
+
+Optimizer:
+    opt: lookahead_radam
+    lr: 0.0001
+    opt_eps: null 
+    opt_betas: null
+    momentum: null 
+    weight_decay: 0.00001
+max_patch_num: 20480
+Loss:
+    base_loss: CrossEntropyLoss
+fold_dir: ./nfold
+
+label_path:
+  tcga_lung: label/TCGA_Lung_label.csv
+  camelyon16: label/reference.csv
+  glioma_idh: label/TCGA_IHD_1.csv
+  glioma_1p19q: label/TCGA_1p19q.csv
+  glioma_tert: label/TCGA_TERT.csv
+  ctranspath_tcga_lung: label/TCGA_Lung_label.csv
+
+data_path:
+  tcga_lung:
+    20X: 
+    10X: 
+    10X-A:
+    5X:
+    5X-A:
+    wsi_path:
+  camelyon16:
+    20X: 
+    10X: 
+    10X-A:
+    5X:
+    5X-A:
+    wsi_path:
+  glioma:
+    20X: /media/zbc/MyBook/code/MAGA-Trans/glioma/data/TCGA/20X_feature_npy/resnet50_pretrain/256_1024
+    10X: /media/zbc/M008/COMMA/Glioma/data/feature/coma/Glioma/10X
+    10X-A:
+    5X: /media/zbc/M008/COMMA/Glioma/data/feature/coma/Glioma/5X
+    5X-A:
+    wsi_path:
+  ctranspath_tcga_lung:
+    20X: /media/zbc/M008/COMMA/Lung/data/feature/trad_ctranspath/tcga_lung/20X
+    10X: /media/zbc/M008/COMMA/Lung/data/feature/trad_ctranspath/tcga_lung/10X
+    10X-A:
+    5X: /media/zbc/M008/COMMA/Lung/data/feature/trad_ctranspath/tcga_lung/5X
+    5X-A: /media/zbc/M008/COMMA/Lung/data/feature/trad_ctranspath/tcga_lung/20Xto5X/
+    wsi_path:

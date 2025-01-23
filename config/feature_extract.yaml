@@ -1,0 +1,22 @@
+LEVEL_SIZE:
+  20X: 256 
+  10X: 128 
+  5X: 64 
+LEVEL_DWON:
+  20X: 0 
+  10X: 1 
+  5X: 2 
+LEVEL_INDEX:
+# In camelyon16 20X is in level 1
+  camelyon16:
+    20X: 1 
+    10X: 2 
+    5X: 3 
+  tcga_glioma:
+    20X: 0 
+    10X: 1 
+    5X: 2 
+  tcga_lung:
+    20X: 0 
+    10X: 1 
+    5X: 2 
