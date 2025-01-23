@@ -21,7 +21,7 @@ MAGA-GLTrans is trained and predicts at magnifications of 20X, 10X, and 5X. If W
 * `SAVE_DIR`: Reconfigure the save folder of the WSI.
 * `SUFFIX`: The suffix of the original WSI file. such as‌ '.svs', '.tif', '.mrxs'.
 
-### Tissue Segmentation {#ts}
+### Tissue Segmentation 
 The tissue segmentation process follows the [CLAM](https://github.com/mahmoodlab/CLAM).
 
 ### Feature Extraction
@@ -50,7 +50,7 @@ After patching of WSIs, we train the alignment model by the `mag_align_train.py`
 
 #### 3. Inference of Aligned Model.
 * `-infer_wsi_dir`: WSI folder that requires inference.
-* `-infer_wsi_index_dir`: Tissue index `CSV` file for the WSI. Requires the same file name as WSI. It can be obtained by `[Tissue Segmentation](#ts)` step.
+* `-infer_wsi_index_dir`: Tissue index `CSV` file for the WSI. Requires the same file name as WSI. It can be obtained by `Tissue Segmentation` step.
 * `-infer_weight`: The weight of align model.
 
 ### MAGA-GLTrans Training
