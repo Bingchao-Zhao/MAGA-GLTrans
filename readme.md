@@ -3,6 +3,8 @@ MAGA-GLTrans
 ## Towards Computation-, Communication-efficient and Storage-friendly Computational Pathology.
 Despite the impressive performance across a wide range of applications, current computational pathology (CPath) models face significant diagnostic efficiency challenges due to their reliance on high-magnification whole-slide image analysis. This limitation severely compromises their clinical utility, especially in time-sensitive diagnostic scenarios and situations requiring efficient data transfer. To address these issues, we present a novel computation- and communication-efficient framework called **MAG**nification-**A**ligned **G**lobal-**L**ocal **Trans**former (MAGA-GLTrans). Our approach significantly reduces computational time, file transfer requirements, and storage overhead by enabling effective analysis using low-magnification inputs rather than high-magnification ones. The key innovation lies in our proposed magnification alignment (MAGA) mechanism, which employs self-supervised learning to bridge the information gap between low and high magnification levels by effectively aligning their feature representations. Through extensive evaluation across various fundamental CPath tasks, MAGA-GLTrans demonstrates state-of-the-art classification performance while achieving remarkable efficiency gains: up to 10.7&times; reduction in computational time and over 20&times; reduction in file transfer and storage requirements. Furthermore, we highlight the versatility of our MAGA framework through two significant extensions: (1) its applicability as a feature extractor to enhance the efficiency of any CPath architecture, and (2) its compatibility with existing foundation models and histopathology-specific encoders, enabling them to process low-magnification inputs with minimal information loss. These advancements position MAGA-GLTrans as a particularly promising solution for telepathology applications, especially in the context of intraoperative frozen section diagnosis where both accuracy and efficiency are paramount.
 
+[Interactive DEMO](maga-gltrans.gdmedialab.com)
+
 ## Installation
 - Linux (Tested on Ubuntu 22.04)
 - NVIDIA GPU (Tested on a single Nvidia GeForce RTX 3090)
@@ -31,7 +33,7 @@ It is worth noting that the corresponding WSI tile resolutions for this paper at
 
 The features are saved as a dictionary in a `.npy` file. The specific format is: `data = {'feature':[f1,... ,fn], 'index':[[],... ,[]]}`.
 
-## Magnification-Aligned
+## Magnification Alignment (MAGA)
 In the magnification alignment task, the input low-magnification image must maintain the same field of view as the high-magnification image. For example, in the 5X and 20X alignment tasks, if the image resolution of 20X is 256×256, the image resolution of 5X should be 64×64.
 
 ### 1. Patching
